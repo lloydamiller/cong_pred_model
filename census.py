@@ -127,7 +127,7 @@ Step 1: Adds in state abbreviations and creates a label column with the congress
 
 ''' Adding In The State Abbreviation And Congressional District Label '''
 
-states = pd.read_csv('https://raw.githubusercontent.com/milleractual/congresshealth/master/data/states.csv')
+states = pd.read_csv('https://raw.githubusercontent.com/milleractual/cong_pred_model/master/data/states.csv')
 df = pd.merge(df, states, on='statefull')
 
 # Creates The District Labels
@@ -143,7 +143,7 @@ Step 2: Add in the Cook PVI Ratings.  Ratings originated from a PDF produced in 
         and formatted in Excel and saved as a CSV.
 '''
 
-cook = pd.read_csv('https://raw.githubusercontent.com/milleractual/congresshealth/master/data/pvi.csv')
+cook = pd.read_csv('https://raw.githubusercontent.com/milleractual/cong_pred_model/master/data/pvi.csv')
 cook.drop(['Sta','CD'], axis=1, inplace=True)
 
 df = pd.merge(df, cook, on='label')
@@ -161,7 +161,7 @@ while i <= (len(df)-1):
 Step 3: Adds in the file on the actual size of the congressional district. Mileage matters.
 '''
 
-sqrm = pd.read_csv('https://raw.githubusercontent.com/milleractual/congresshealth/master/data/cdsqrmile.csv')
+sqrm = pd.read_csv('https://raw.githubusercontent.com/milleractual/cong_pred_model/master/data/cdsqrmile.csv')
 sqrm = pd.merge(sqrm, states, left_on='State', right_on='statefull')
 
 sqrm['label'] = ' '
