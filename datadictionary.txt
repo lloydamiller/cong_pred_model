@@ -1,0 +1,47 @@
+DATA DICTIONARY
+
+File: fulldataset.csv
+Path: https://raw.githubusercontent.com/milleractual/cong_pred_model/master/data/fulldataset.csv
+
+
+Feature         Type     Description
+--------------------------------------------------------------------------------
+
+year	                  :  int  :   Election year
+label                     :  str  :   Congressional district ID, ie. Al-1 is Alabama's first congressional district
+can_nam_dem               :  str  :   Democratic candidate’s name
+can_par_aff_dem	          :  str  :   Party affiliation Democrat
+can_inc_cha_ope_sea_dem	  :  int  :   Dem candidate status for seat 0 = Incumbent, 1 = Challenger, 2 = Open s
+ind_con_dem	          :  int  :   Total population of the district
+tot_con_dem	          :  int  :   Total population of the district
+tot_rec_dem	          :  int  :   Total population of the district
+tot_dis_dem	          :  int  :   Total population of the district
+cas_on_han_beg_of_per_dem :  int  :   Total population of the district
+cas_on_han_clo_of_per_dem :  int  :   Total population of the district
+tot_rec_final_dem         :  int  :   Total population of the district
+can_nam_gop	          :  int  :   Total population of the district
+can_par_aff_gop	          :  int  :   Total population of the district
+can_inc_cha_ope_sea_gop	  :  int  :   Total population of the district
+per_dem	                  :  int  :   Total population of the district
+per_gop	                  :  int  :   Total population of the district
+ind_con_gop	          :  int  :   Total population of the district
+tot_con_gop	          :  int  :   Total population of the district
+tot_rec_gop	          :  int  :   Total population of the district
+tot_dis_gop	          :  int  :   Total population of the district
+cas_on_han_beg_of_per_gop :  int  :   Total population of the district
+cas_on_han_clo_of_per_gop :  int  :   Total population of the district
+tot_rec_final_gop	  :  int  :   Total population of the district
+gopwin	                  :  int  :   1 if GOP candidate won, 0 if GOP candidate lost
+population                :  int  :   Total population of the district	
+income	                  :  int  :   Median income of the district, in 2013 $US
+homeval                   :  int  :   Median home value in the district, in 2013 $US
+rentval                   :  int  :   Median rent cost in the district, in 2013 $US
+gopvi                     :  int  :   GOP Voting Index - normalizes PVI to + for R leaning, and - for D leaning.
+density                   :  int  :   Number of people per square mile
+white                     :  flt  :   The percentage of the total population that is white 	
+gop_cash_adv_beg	  :  int  :   Delta of cas_on_han_beg_of_per_gop - cas_on_han_beg_of_per_dem
+gop_cash_adv_end	  :  int  :   Delta of cas_on_han_clo_of_per_gop - cas_on_han_clo_of_per_dem
+urb_cat	                  :  int  :   0 = urban (density > 1000), 1 = suburban (density > 500, < 1000), 2 = rural (density > 500)
+seat_stat_gop	          :  int  :   GOP candidate status - 0 = incumbent, 1 = challenger, 2 = open
+inc_gop                   :  int  :   GOP incumbent status, 1 = incumbent, 0 = open or challenger
+
