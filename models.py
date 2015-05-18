@@ -23,15 +23,15 @@ LINEAR REGRESSION
 
 # Regression for PVI score and Incumbent/Open/Challenger status of GOP candidate
 
-lm1 = smf.ols(formula='per_gop ~ gopvi + inc_gop', data=df).fit()
+lm1 = smf.ols(formula='per_gop ~ gopvi + inc_gop + gop_cash_adv_end', data=df).fit()
 lm1.rsquared
 
 '''
 R Squared
-0.8520277791837757     gopvi + inc_gop
+0.8597148606005196     gopvi + inc_gop + gop_cash_adv_end
 '''
 
-feature_cols = ['gopvi','inc_gop']
+feature_cols = ['gopvi','inc_gop','gop_cash_adv_end']
 X = df[feature_cols]
 y = df.per_gop
 lm2 = LinearRegression()
@@ -41,18 +41,18 @@ print lm2.coef_
 
 zip(feature_cols, lm2.coef_)
 '''
-[('gopvi',                    0.92660532238700444), 
- ('can_inc_cha_ope_sea_gop', -3.8554427911707645)]
+[('gopvi',   0.82973638835948416), 
+('inc_gop', -7.6325583360687537)]
 '''
 
 lm1.conf_int()
 
 '''
-                                    0          1
-Intercept                   44.516323  46.145216
-seat_stat_gop[T.INCUMBENT]   7.017446   9.599684
-seat_stat_gop[T.OPEN]        0.468559   3.613564
-gopvi                        0.762018   0.865181
+                          0          1
+Intercept         51.356873  53.179247
+gopvi              0.778774   0.876915
+inc_gop           -6.952243  -4.150680
+gop_cash_adv_end   0.000001   0.000002
 '''
 
 lm1.summary()
@@ -60,32 +60,46 @@ lm1.summary()
 """
                             OLS Regression Results                            
 ==============================================================================
-Dep. Variable:                per_gop   R-squared:                       0.852
-Model:                            OLS   Adj. R-squared:                  0.851
-Method:                 Least Squares   F-statistic:                     1416.
-Date:                Sun, 17 May 2015   Prob (F-statistic):          7.32e-205
-Time:                        11:48:20   Log-Likelihood:                -1519.5
-No. Observations:                 495   AIC:                             3045.
-Df Residuals:                     492   BIC:                             3058.
-Df Model:                           2                                         
+Dep. Variable:                per_gop   R-squared:                       0.860
+Model:                            OLS   Adj. R-squared:                  0.859
+Method:                 Least Squares   F-statistic:                     1003.
+Date:                Sun, 17 May 2015   Prob (F-statistic):          6.41e-209
+Time:                        21:54:19   Log-Likelihood:                -1506.3
+No. Observations:                 495   AIC:                             3021.
+Df Residuals:                     491   BIC:                             3037.
+Df Model:                           3                                         
+====================================================================================
+                       coef    std err          t      P>|t|      [95.0% Conf. Int.]
+------------------------------------------------------------------------------------
+Intercept           52.2681      0.464    112.706      0.000        51.357    53.179
+gopvi                0.8278      0.025     33.147      0.000         0.779     0.877
+inc_gop             -5.5515      0.713     -7.787      0.000        -6.952    -4.151
+gop_cash_adv_end  1.813e-06   3.49e-07      5.187      0.000      1.13e-06   2.5e-06
 ==============================================================================
-                 coef    std err          t      P>|t|      [95.0% Conf. Int.]
-------------------------------------------------------------------------------
-Intercept     45.8695      0.359    127.899      0.000        45.165    46.574
-gopvi          0.8297      0.026     32.385      0.000         0.779     0.880
-inc_gop        7.6326      0.605     12.623      0.000         6.445     8.821
+Omnibus:                       22.876   Durbin-Watson:                   1.948
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):               58.509
+Skew:                          -0.133   Prob(JB):                     1.97e-13
+Kurtosis:                       4.663   Cond. No.                     3.17e+06
 ==============================================================================
-Omnibus:                       12.740   Durbin-Watson:                   1.884
-Prob(Omnibus):                  0.002   Jarque-Bera (JB):               24.658
-Skew:                          -0.030   Prob(JB):                     4.42e-06
-Kurtosis:                       4.092   Cond. No.                         33.6
-==============================================================================
+
+Warnings:
+[1] The condition number is large, 3.17e+06. This might indicate that there are
+strong multicollinearity or other numerical problems.
 """
 
 # K-FOLD CROSS VALIDATION FOR LINEAR REGRESSION
 
+feature_cols = ['gopvi','inc_gop']
+# 5.26368908322
+
 feature_cols = ['gopvi','inc_gop','gop_cash_adv_beg']
 # 5.11210444695
+
+feature_cols = ['gopvi','inc_gop','gop_cash_adv_end']
+# 5.1040030191
+
+feature_cols = ['gopvi','inc_gop','gop_cash_adv_beg','gop_cash_adv_end']
+# 5.12151421201
 
 X = df[feature_cols]
 y = df.per_gop
@@ -103,7 +117,7 @@ The decision tree will provide the best features.
 
 '''
 
-feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','gop_fund_adv','inc_gop']
+feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','gop_cash_adv_end','inc_gop']
 
 X = df[feature_cols]
 y = df.per_gop
@@ -123,7 +137,7 @@ plt.plot(max_depth_range, RMSE_scores)
 max_leaf_range = range(5, 20)
 RMSE_scores = []
 for leaf in max_leaf_range:
-    treereg = DecisionTreeRegressor(max_depth=5, random_state=1, min_samples_leaf=leaf)
+    treereg = DecisionTreeRegressor(max_depth=4, random_state=1, min_samples_leaf=leaf)
     MSE_scores = cross_val_score(treereg, X, y, cv=5, scoring='mean_squared_error')
     RMSE_scores.append(np.mean(np.sqrt(-MSE_scores)))
 RMSE_scores

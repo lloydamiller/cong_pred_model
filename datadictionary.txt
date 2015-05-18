@@ -43,4 +43,5 @@ gop_cash_adv_end	  :  int  :   Delta of cas_on_han_clo_of_per_gop - cas_on_han_c
 urb_cat	                  :  int  :   0 = urban (density > 1000), 1 = suburban (density > 500, < 1000), 2 = rural (density > 500)
 seat_stat_gop	          :  int  :   GOP candidate status - 0 = incumbent, 1 = challenger, 2 = open
 inc_gop                   :  int  :   GOP incumbent status, 1 = incumbent, 0 = open or challenger
+gop_fund_adv              :  int  :   Delta of tot_rec_gop - tot_rec_dem
 
