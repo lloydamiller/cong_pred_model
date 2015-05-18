@@ -117,7 +117,9 @@ The decision tree will provide the best features.
 
 '''
 
-feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','gop_cash_adv_end','inc_gop']
+feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','inc_gop','gop_fund_adv']
+
+feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','inc_gop','gop_fund_adv','gop_cash_adv_end']
 
 X = df[feature_cols]
 y = df.per_gop
@@ -137,7 +139,7 @@ plt.plot(max_depth_range, RMSE_scores)
 max_leaf_range = range(5, 20)
 RMSE_scores = []
 for leaf in max_leaf_range:
-    treereg = DecisionTreeRegressor(max_depth=4, random_state=1, min_samples_leaf=leaf)
+    treereg = DecisionTreeRegressor(max_depth=5, random_state=1, min_samples_leaf=leaf)
     MSE_scores = cross_val_score(treereg, X, y, cv=5, scoring='mean_squared_error')
     RMSE_scores.append(np.mean(np.sqrt(-MSE_scores)))
 RMSE_scores
