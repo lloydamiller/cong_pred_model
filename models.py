@@ -119,8 +119,6 @@ The decision tree will provide the best features.
 
 feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','inc_gop','gop_fund_adv']
 
-feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','inc_gop','gop_fund_adv','gop_cash_adv_end']
-
 X = df[feature_cols]
 y = df.per_gop
 
@@ -160,8 +158,8 @@ Importance of features for depth 5, min 7 samples per leaf
 0             gopvi    0.888646
 1  gop_cash_adv_beg    0.080406
 2       tot_rec_gop    0.023629
-3      gop_fund_adv    0.002363
-4           inc_gop    0.004956
+3           inc_gop    0.004956
+4      gop_fund_adv    0.002363
 
 '''
 
@@ -181,7 +179,9 @@ Using the features from the decision tree model, create a random forest with 100
 
 '''
 
-feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','gop_fund_adv','inc_gop']
+feature_cols = ['gopvi','gop_cash_adv_beg','tot_rec_gop','inc_gop']
+# RSME 5.01590013856
+
 
 rfclf = RandomForestRegressor(n_estimators=1000, max_features=3, oob_score=True, random_state=1)
 
@@ -191,11 +191,10 @@ pd.DataFrame({'feature':feature_cols, 'importance':rfclf.feature_importances_})
 
 '''
             feature  importance
-0             gopvi    0.571315
-1  gop_cash_adv_beg    0.243209
-2       tot_rec_gop    0.076087
-3      gop_fund_adv    0.068150
-4           inc_gop    0.041238
+0             gopvi    0.675347
+1  gop_cash_adv_beg    0.227494
+2       tot_rec_gop    0.077886
+3           inc_gop    0.019273
 '''
 
 rfclf.oob_score_
@@ -205,6 +204,6 @@ scores = cross_val_score(rfclf, X, y, cv=10, scoring='mean_squared_error')
 scores_sqrt = np.sqrt(-scores)
 print np.mean(scores_sqrt)
 
-# RSME 5.0166672203
+# RSME 5.01590013856
 
 
