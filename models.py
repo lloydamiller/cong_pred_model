@@ -204,3 +204,10 @@ print np.mean(scores_sqrt)
 # RSME 5.01590013856
 
 
+
+
+
+
+
+
+
