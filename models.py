@@ -41,17 +41,17 @@ print lm2.coef_
 
 zip(feature_cols, lm2.coef_)
 '''
-[('gopvi',   0.82973638835948416), 
-('inc_gop', -7.6325583360687537)]
+[('gopvi',   0.82784430761145078), 
+('inc_gop',  5.5514614012928236)]
 '''
 
 lm1.conf_int()
 
 '''
                           0          1
-Intercept         51.356873  53.179247
+Intercept         45.958534  47.474664
 gopvi              0.778774   0.876915
-inc_gop           -6.952243  -4.150680
+inc_gop            4.150680   6.952243
 gop_cash_adv_end   0.000001   0.000002
 '''
 
@@ -63,28 +63,25 @@ lm1.summary()
 Dep. Variable:                per_gop   R-squared:                       0.860
 Model:                            OLS   Adj. R-squared:                  0.859
 Method:                 Least Squares   F-statistic:                     1003.
-Date:                Sun, 17 May 2015   Prob (F-statistic):          6.41e-209
-Time:                        21:54:19   Log-Likelihood:                -1506.3
+Date:                Fri, 29 May 2015   Prob (F-statistic):          6.41e-209
+Time:                        11:35:07   Log-Likelihood:                -1506.3
 No. Observations:                 495   AIC:                             3021.
 Df Residuals:                     491   BIC:                             3037.
 Df Model:                           3                                         
+Covariance Type:            nonrobust                                         
 ====================================================================================
                        coef    std err          t      P>|t|      [95.0% Conf. Int.]
 ------------------------------------------------------------------------------------
-Intercept           52.2681      0.464    112.706      0.000        51.357    53.179
+Intercept           46.7166      0.386    121.083      0.000        45.959    47.475
 gopvi                0.8278      0.025     33.147      0.000         0.779     0.877
-inc_gop             -5.5515      0.713     -7.787      0.000        -6.952    -4.151
+inc_gop              5.5515      0.713      7.787      0.000         4.151     6.952
 gop_cash_adv_end  1.813e-06   3.49e-07      5.187      0.000      1.13e-06   2.5e-06
 ==============================================================================
 Omnibus:                       22.876   Durbin-Watson:                   1.948
 Prob(Omnibus):                  0.000   Jarque-Bera (JB):               58.509
 Skew:                          -0.133   Prob(JB):                     1.97e-13
-Kurtosis:                       4.663   Cond. No.                     3.17e+06
+Kurtosis:                       4.663   Cond. No.                     3.00e+06
 ==============================================================================
-
-Warnings:
-[1] The condition number is large, 3.17e+06. This might indicate that there are
-strong multicollinearity or other numerical problems.
 """
 
 # K-FOLD CROSS VALIDATION FOR LINEAR REGRESSION
