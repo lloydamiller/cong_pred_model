@@ -200,5 +200,3 @@ plt.xlabel('Partisan Lean (Dem, Swing, GOP)')
 plt.ylabel('Percent of Vote for GOP');
 
 '''
-Other ideas for visualizations?
-'''
