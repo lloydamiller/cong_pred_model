@@ -15,7 +15,7 @@ from sklearn.ensemble import RandomForestRegressor
 
 import statsmodels.formula.api as smf
 
-df = pd.read_csv('data/fulldataset.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/milleractual/cong_pred_model/master/data/fulldataset.csv')
 
 '''
 LINEAR REGRESSION
