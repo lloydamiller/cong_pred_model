@@ -167,6 +167,12 @@ plt.title('The Correlations for Cash on Hand (April 1)')
 plt.ylabel('Percent of vote for GOP')
 plt.xlabel('Cash on Hand Advantage');
 
+# Correlation between vote and 
+
+sns.pairplot(df, x_vars=['tot_rec_gop'], y_vars='per_gop', size=7, aspect=1, kind='reg')
+plt.ylabel('Percent of vote for GOP')
+plt.xlabel('Total Receipts for GOP Candidate');
+
 # Charting The Correlations for Beginning Cash on Hand (April 1)
 
 sns.pairplot(df, x_vars=['gop_cash_adv_end'], y_vars='per_gop', size=7, aspect=1, kind='reg')
